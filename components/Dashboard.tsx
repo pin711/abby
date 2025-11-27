@@ -72,7 +72,7 @@ const Dashboard: React.FC<DashboardProps> = ({ assets, currentMarketPrices }) =>
                   dataKey="value"
                   cornerRadius={8}
                 >
-                  {pieData.map((entry, index) => (
+                  {pieData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none" />
                   ))}
                 </Pie>
