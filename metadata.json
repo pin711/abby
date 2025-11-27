@@ -1,0 +1,5 @@
+{
+  "name": "AlphaTrade Pro - 智能資產管理系統",
+  "description": "結合 AI 投顧與模擬交易的專業級資產管理平台。具備雙模組架構：無金鑰時自動切換至模擬樣品屋模式，確保 UI 全功能展示；配置金鑰後即時串接真實股市與 Gemini AI 分析。",
+  "requestFramePermissions": []
+}
