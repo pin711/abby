@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -25,21 +25,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
+          # 移除 cache: 'npm' 以避免找不到 lock file 的錯誤
 
-      # 修改點：使用 npm install 而非 npm ci
-      # 這允許在沒有 package-lock.json 的情況下也能成功安裝依賴並進行建置
       - name: Install dependencies
         run: npm install
 
       - name: Build
         run: npm run build
         env:
-          # 注入 GitHub Secrets
           VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
           VITE_FINNHUB_API_KEY: ${{ secrets.VITE_FINNHUB_API_KEY }}
           VITE_FIREBASE_CONFIG_STRING: ${{ secrets.VITE_FIREBASE_CONFIG_STRING }}
-          # 自動抓取 Repository 名稱作為 Base URL
+          # 自動設定 Base URL
           GITHUB_PAGES_BASE_URL: /${{ github.event.repository.name }}/
 
       - name: Upload artifact
